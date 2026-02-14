@@ -90,6 +90,24 @@ export function LoginView({
           {!isLoading && <ArrowRight className="h-4 w-4 ml-2" />}
         </Button>
       </form>
+
+      <div className="relative">
+        <div className="absolute inset-0 flex items-center">
+            <div className="w-full border-t border-border" />
+        </div>
+        <div className="relative flex justify-center text-xs">
+            <span className="bg-background px-3 text-muted-foreground">
+            New to TradeLog?
+            </span>
+        </div>
+    </div>
+    <Button
+        variant="outline"
+        className="h-11 w-full font-medium"
+        onClick={() => setView("signup")}
+        >
+        Create an account
+    </Button>
     </div>
   )
 }
