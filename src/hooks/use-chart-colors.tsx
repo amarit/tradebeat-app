@@ -4,10 +4,10 @@ import { useTheme } from "next-themes"
 function getCSSVar(name: string): string {
   if (typeof window === "undefined") return ""
   const value = getComputedStyle(document.documentElement).getPropertyValue(name).trim()
-  return value ? `hsl(${value})` : ""
+  return value ? `${value}` : ""
 }
 
-export function useChartColors() {
+  export function useChartColors() {
   const { resolvedTheme } = useTheme()
   const [colors, setColors] = useState({
     grid: "hsl(220 12% 18%)",
@@ -18,17 +18,20 @@ export function useChartColors() {
   })
 
   useEffect(() => {
-    // Small delay to ensure CSS variables are updated after theme switch
-    const timer = setTimeout(() => {
-      setColors({
-        grid: getCSSVar("--chart-grid"),
-        tick: getCSSVar("--chart-tick"),
-        primary: getCSSVar("--primary"),
-        profit: getCSSVar("--profit"),
-        loss: getCSSVar("--loss"),
-      })
-    }, 50)
-    return () => clearTimeout(timer)
+    const style = getComputedStyle(document.documentElement)
+
+    const get = (name: string, fallback: string) => {
+      const value = style.getPropertyValue(name).trim()
+      return value || fallback
+    }
+
+    setColors({
+      grid: get("--border", colors.grid),
+      tick: get("--muted-foreground", colors.tick),
+      primary: get("--chart-1", colors.primary),
+      profit: get("--profit", colors.profit),
+      loss: get("--loss", colors.loss),
+    })
   }, [resolvedTheme])
 
   return colors

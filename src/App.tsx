@@ -19,10 +19,10 @@ export default function App() {
 
       {/* Protected / app routes */}
       <Route element={<AppLayout />}>
-        <Route path="dashboard" element={<DashboardPage />} />
-        <Route path=":lang/trades" element={<Trades />} />
-        <Route path="test" element={<TestApiPage />} />
-        <Route path="test2" element={<TestPage />} />        
+        <Route path="/dashboard" element={<DashboardPage />} />
+        <Route path="/:lang/trades" element={<Trades />} />
+        <Route path="/test" element={<TestApiPage />} />
+        <Route path="/test2" element={<TestPage />} />        
       </Route>
     </Routes>
   )
