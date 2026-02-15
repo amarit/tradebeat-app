@@ -1,18 +1,21 @@
-import { Outlet } from "react-router-dom"
+import { useState } from "react"
 import { Sidebar } from "@/components/core/Sidebar"
+import { Outlet } from "react-router-dom"
 
 export function AppLayout() {
+  const [collapsed, setCollapsed] = useState(false)
+
   return (
     <div className="flex h-screen bg-background">
-      {/* Sidebar */}
-      <Sidebar />
+      <Sidebar
+        collapsed={collapsed}
+        onToggleCollapse={() => setCollapsed(!collapsed)}
+        onLogTrade={() => {}}
+      />
 
-      {/* Main content area */}
-      <div className="flex flex-1 flex-col overflow-hidden">
-        <main className="flex-1 overflow-auto p-6">
-          <Outlet />
-        </main>
-      </div>
+      <main className="flex-1 overflow-auto p-6">
+        <Outlet />
+      </main>
     </div>
   )
 }

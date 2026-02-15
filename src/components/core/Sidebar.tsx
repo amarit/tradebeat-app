@@ -17,7 +17,7 @@ import { useTheme } from "next-themes"
 
 const navItems = [
   { label: "Dashboard", path: "dashboard", icon: LayoutDashboard },
-  { label: "Trades", path: "trades", icon: ArrowLeftRight },
+  { label: "Trades", path: "sv/trades", icon: ArrowLeftRight },
   { label: "Analytics", path: "analytics", icon: BarChart3 },
   { label: "Journal", path: "journal", icon: BookOpen },
 ]
@@ -40,8 +40,8 @@ export function Sidebar({
   return (
     <aside
         className={cn(
-            "flex h-full flex-col border-r border-sidebar-border bg-sidebar transition-all duration-200",
-            collapsed ? "w-16" : "w-56"
+            "flex h-full flex-col border-r border-sidebar-border bg-sidebar transition-all duration-300 ease-in-out",
+            collapsed ? "w-[72px]" : "w-[240px]"
         )}
         >
       {/* Logo */}
@@ -102,18 +102,24 @@ export function Sidebar({
       {/* Bottom actions */}
       <div className="border-t border-sidebar-border px-3 py-3">
         <button
-          onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
-          className={cn(
-            "flex w-full items-center gap-3 rounded-md px-3 py-2 text-sm text-sidebar-foreground transition-colors hover:bg-sidebar-accent hover:text-foreground",
+        onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
+        className={cn(
+            "flex w-full items-center gap-3 rounded-md px-3 py-2 text-sm transition-colors hover:bg-sidebar-accent",
             collapsed && "justify-center px-0"
-          )}
+        )}
         >
-          <span className="relative h-4 w-4 shrink-0">
-            <Sun className="h-4 w-4 rotate-0 scale-100 transition-transform dark:-rotate-90 dark:scale-0" />
-            <Moon className="absolute inset-0 h-4 w-4 rotate-90 scale-0 transition-transform dark:rotate-0 dark:scale-100" />
-          </span>
-          {!collapsed && <span>{mounted ? (resolvedTheme === "dark" ? "Light Mode" : "Dark Mode") : "Toggle Theme"}</span>}
+        {resolvedTheme === "dark" ? (
+            <Sun className="h-4 w-4" />
+        ) : (
+            <Moon className="h-4 w-4" />
+        )}
+        {!collapsed && (
+            <span>
+            {resolvedTheme === "dark" ? "Light Mode" : "Dark Mode"}
+            </span>
+        )}
         </button>
+
         <button
           className={cn(
             "flex w-full items-center gap-3 rounded-md px-3 py-2 text-sm text-sidebar-foreground transition-colors hover:bg-sidebar-accent hover:text-foreground",
