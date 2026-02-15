@@ -71,9 +71,9 @@ function MetricCard({
   variant?: "default" | "profit" | "loss"
 }) {
   return (
-    <div className="flex flex-col gap-3 rounded-lg border border-border bg-card p-4">
+    <div className="flex flex-col gap-3 rounded-sm bg-card p-5 shadow-sm">
       <div className="flex items-center justify-between">
-        <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
+        <span className="text-[9px] tracking-wide font-medium text-muted-foreground uppercase tracking-wider">
           {label}
         </span>
         <Icon className="h-4 w-4 text-muted-foreground" />
@@ -81,7 +81,7 @@ function MetricCard({
       <div className="flex items-end justify-between">
         <span
           className={cn(
-            "text-2xl font-semibold font-mono tracking-tight",
+            "text-3xl font-semibold font-mono tracking-tight",
             variant === "profit" && "text-profit",
             variant === "loss" && "text-loss",
             variant === "default" && "text-foreground"
@@ -115,7 +115,7 @@ function MetricCard({
 function CustomTooltip({ active, payload, label }: { active?: boolean; payload?: Array<{ value: number }>; label?: string }) {
   if (active && payload && payload.length) {
     return (
-      <div className="rounded-md border border-border bg-popover px-3 py-2 text-xs shadow-lg">
+      <div className="rounded-sm border border-border bg-popover px-3 py-2 text-xs shadow-lg">
         <p className="text-muted-foreground">{label}</p>
         <p className={cn("font-mono font-semibold", payload[0].value >= 0 ? "text-profit" : "text-loss")}>
           {payload[0].value >= 0 ? "+" : ""}
@@ -130,7 +130,7 @@ function CustomTooltip({ active, payload, label }: { active?: boolean; payload?:
 function EquityTooltip({ active, payload, label }: { active?: boolean; payload?: Array<{ value: number }>; label?: string }) {
   if (active && payload && payload.length) {
     return (
-      <div className="rounded-md border border-border bg-popover px-3 py-2 text-xs shadow-lg">
+      <div className="rounded-sm border border-border bg-popover px-3 py-2 text-xs shadow-lg">
         <p className="text-muted-foreground">{label}</p>
         <p className="font-mono font-semibold text-foreground">
           ${payload[0].value.toLocaleString()}
@@ -146,7 +146,7 @@ export function DashboardPage() {
   const chartColors = useChartColors()
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-8">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -155,7 +155,7 @@ export function DashboardPage() {
             Thursday, Feb 13, 2026
           </p>
         </div>
-        <div className="flex items-center rounded-md border border-border bg-card p-0.5">
+        <div className="flex items-center rounded-sm border border-border bg-card p-0.5">
           {periods.map((p) => (
             <button
               key={p}
@@ -174,7 +174,7 @@ export function DashboardPage() {
       </div>
 
       {/* Metric cards */}
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid grid-cols-4 gap-4 text-5xl">
         <MetricCard
           label="Net P&L"
           value="+$1,030"
@@ -207,9 +207,9 @@ export function DashboardPage() {
       {/* Charts row */}
       <div className="grid grid-cols-5 gap-4">
         {/* Equity Curve */}
-        <div className="col-span-3 rounded-lg border border-border bg-card p-4">
+        <div className="col-span-3 rounded-sm bg-card shadow-sm p-4">
           <div className="mb-4 flex items-center justify-between">
-            <h2 className="text-sm font-medium text-foreground">
+            <h2 className="text-sm text-base font-semibold tracking-tight text-foreground">
               Equity Curve
             </h2>
             <span className="font-mono text-sm text-muted-foreground">
@@ -248,15 +248,15 @@ export function DashboardPage() {
         </div>
 
         {/* Daily P&L */}
-        <div className="col-span-2 rounded-lg border border-border bg-card p-4">
+        <div className="col-span-2 rounded-sm bg-card shadow-sm p-4">
           <div className="mb-4 flex items-center justify-between">
-            <h2 className="text-sm font-medium text-foreground">Daily P&L</h2>
+            <h2 className="text-sm text-base font-semibold tracking-tight text-foreground">Daily P&L</h2>
             <span className="text-xs text-muted-foreground">Last 9 days</span>
           </div>
           <div className="h-52">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={dailyPnlData}>
-                <CartesianGrid strokeDasharray="3 3" stroke={chartColors.grid} vertical={false} />
+                <CartesianGrid strokeDasharray="2 4" stroke={chartColors.grid} vertical={false} />
                 <XAxis
                   dataKey="date"
                   tick={{ fontSize: 10, fill: chartColors.tick }}
@@ -286,9 +286,9 @@ export function DashboardPage() {
       </div>
 
       {/* Recent Trades */}
-      <div className="rounded-lg border border-border bg-card">
-        <div className="flex items-center justify-between border-b border-border px-4 py-3">
-          <h2 className="text-sm font-medium text-foreground">
+      <div className="rounded-sm bg-card shadow-sm">
+        <div className="flex items-center justify-between border-b border-border/40 px-4 py-3">
+          <h2 className="text-sm text-base font-semibold tracking-tight text-foreground">
             Recent Trades
           </h2>
           <button className="text-xs font-medium text-primary hover:underline">
@@ -298,20 +298,20 @@ export function DashboardPage() {
         <div className="overflow-hidden">
           <table className="w-full">
             <thead>
-              <tr className="border-b border-border text-left">
-                <th className="px-4 py-2.5 text-xs font-medium text-muted-foreground uppercase tracking-wider">
+              <tr className="border-b border-border bg-muted/40 text-left">
+                <th className="px-4 py-2.5 text-xs font-semibold font-medium text-muted-foreground uppercase tracking-wider">
                   Asset
                 </th>
-                <th className="px-4 py-2.5 text-xs font-medium text-muted-foreground uppercase tracking-wider">
+                <th className="px-4 py-2.5 text-xs font-semibold font-medium text-muted-foreground uppercase tracking-wider">
                   Direction
                 </th>
-                <th className="px-4 py-2.5 text-xs font-medium text-muted-foreground uppercase tracking-wider">
+                <th className="px-4 py-2.5 text-xs font-semibold font-medium text-muted-foreground uppercase tracking-wider">
                   P&L
                 </th>
-                <th className="px-4 py-2.5 text-xs font-medium text-muted-foreground uppercase tracking-wider">
+                <th className="px-4 py-2.5 text-xs font-semibold font-medium text-muted-foreground uppercase tracking-wider">
                   Time
                 </th>
-                <th className="px-4 py-2.5 text-xs font-medium text-muted-foreground uppercase tracking-wider">
+                <th className="px-4 py-2.5 text-xs font-semibold font-medium text-muted-foreground uppercase tracking-wider">
                   Tags
                 </th>
               </tr>
