@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
+@import "@fontsource/inter/index.css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -37,7 +38,8 @@
   --sidebar-accent-foreground: oklch(0.6723 0.1606 244.9955);
   --sidebar-border: oklch(0.9271 0.0101 238.5177);
   --sidebar-ring: oklch(0.6818 0.1584 243.3540);
-  --font-sans: Open Sans, sans-serif;
+  /* --font-sans: Open Sans, sans-serif; */
+  --font-sans:  "Inter Variable", sans-serif;
   --font-serif: Georgia, serif;
   --font-mono: Menlo, monospace;
   --radius: 1.3rem;
@@ -100,7 +102,8 @@
   --sidebar-accent-foreground: oklch(0.6692 0.1607 245.0110);
   --sidebar-border: oklch(24.884% 0.0015 16.221);
   --sidebar-ring: oklch(0.6818 0.1584 243.3540);
-  --font-sans: Open Sans, sans-serif;
+  /* --font-sans: Open Sans, sans-serif; */
+  --font-sans: "Inter Variable", sans-serif;
   --font-serif: Georgia, serif;
   --font-mono: Menlo, monospace;
   --radius: 1.3rem;
@@ -197,6 +200,8 @@
 
 @layer base {
   body {
+    font-family: var(--font-sans);
+    font-variant-numeric: tabular-nums;
     @apply bg-background text-foreground;
   }
 }
