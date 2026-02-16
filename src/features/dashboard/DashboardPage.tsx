@@ -298,7 +298,7 @@ export function DashboardPage() {
         <div className="overflow-hidden">
           <table className="w-full">
             <thead>
-              <tr className="border-b border-border bg-muted/80 text-left">
+              <tr className="border-b border-border bg-secondary/10 text-left">
                 <th className="px-4 py-2.5 text-xs font-semibold font-medium text-muted-foreground uppercase tracking-wider">
                   Asset
                 </th>
@@ -320,7 +320,7 @@ export function DashboardPage() {
               {recentTrades.map((trade) => (
                 <tr
                   key={trade.id}
-                  className="border-b border-border/50 transition-colors last:border-0 hover:bg-secondary/50"
+                  className="border-b border-border/50 transition-colors last:border-0 hover:bg-secondary/20"
                 >
                   <td className="px-4 py-2.5 text-sm font-medium font-mono text-foreground">
                     {trade.asset}

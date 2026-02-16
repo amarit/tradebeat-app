@@ -287,8 +287,8 @@ function ExecutionsPanel({
         <div className="bg-card overflow-hidden">
           <table className="w-full">
             <thead>
-              <tr className="border-b border-border bg-muted/20 text-left">
-                <th className="w-10 px-3 py-2.5">
+              <tr className="border-b border-border bg-secondary/20 text-left">
+                <th className="w-10 px-3 py-2.5 font-semibold">
                   <Checkbox
                     checked={allSelected}
                     onCheckedChange={toggleSelectAll}
@@ -619,8 +619,8 @@ export function TradeListPage() {
                             <span className="rounded-sm bg-secondary px-2 py-0.5 text-xs text-secondary-foreground truncate max-w-[140px]">
                               {trade.setup}
                             </span>
-                            {trade.hasScreenshot && <ImageIcon className="h-3 w-3 text-muted-foreground/60" />}
-                            {trade.notes && <MessageSquare className="h-3 w-3 text-muted-foreground/60" />}
+                            {/* {trade.hasScreenshot && <ImageIcon className="h-3 w-3 text-muted-foreground/60" />}
+                            {trade.notes && <MessageSquare className="h-3 w-3 text-muted-foreground/60" />} */}
                           </div>
                           <div className="flex justify-end">
                             {isExpanded ? (
