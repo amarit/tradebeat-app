@@ -3,7 +3,7 @@ import { FeatureItem } from "./FeatureItem" // om du bryter ut den, annars ta bo
 
 export function BrandingPanel() {
   return (
-    <div className="hidden lg:flex lg:w-1/2 relative bg-sidebar flex-col justify-between p-12 overflow-hidden">
+    <div className="hidden lg:flex lg:w-1/2 relative bg-sidebar flex-col justify-between p-12 overflow-hidden items-center">
       {/* Subtle background pattern */}
       <div className="absolute inset-0 opacity-[0.03]">
         <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
