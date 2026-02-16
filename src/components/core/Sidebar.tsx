@@ -17,9 +17,10 @@ import { useTheme } from "next-themes"
 
 const navItems = [
   { label: "Dashboard", path: "dashboard", icon: LayoutDashboard },
-  { label: "Trades", path: "sv/trades", icon: ArrowLeftRight },
-  { label: "Analytics", path: "analytics", icon: BarChart3 },
-  { label: "Journal", path: "journal", icon: BookOpen },
+  { label: "Trades", path: "trades", icon: ArrowLeftRight },
+  // { label: "Analytics", path: "analytics", icon: BarChart3 },
+  // { label: "Journal", path: "journal", icon: BookOpen },
+  { label: "Test api call", path: "test", icon: BarChart3 },
 ]
 
 interface AppSidebarProps {
@@ -79,7 +80,7 @@ export function Sidebar({
                 return (
                     <li key={item.path}>
                     <NavLink
-                        to={lang ? `/${lang}/${item.path}` : `/${item.path}`}
+                        to={`${item.path}`}
                         className={({ isActive }) =>
                         cn(
                             "flex w-full items-center gap-3 rounded-md px-3 py-2 text-sm transition-colors",

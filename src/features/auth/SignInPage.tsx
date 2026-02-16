@@ -21,7 +21,7 @@ export function SignInPage() {
     setIsLoading(true)
     // Dummy login - just navigate to dashboard
     setTimeout(() => {
-      navigate("/dashboard")
+      navigate("/sv/dashboard")
     }, 600)
   }
 
@@ -29,7 +29,7 @@ export function SignInPage() {
     e.preventDefault()
     setIsLoading(true)
     setTimeout(() => {
-      navigate("/dashboard")
+      navigate("/sv/dashboard")
     }, 600)
   }
 

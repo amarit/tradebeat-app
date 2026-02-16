@@ -298,7 +298,7 @@ export function DashboardPage() {
         <div className="overflow-hidden">
           <table className="w-full">
             <thead>
-              <tr className="border-b border-border bg-muted/40 text-left">
+              <tr className="border-b border-border bg-muted/80 text-left">
                 <th className="px-4 py-2.5 text-xs font-semibold font-medium text-muted-foreground uppercase tracking-wider">
                   Asset
                 </th>
