@@ -535,7 +535,7 @@ export function TradeListPage() {
                     ]).map(({ label, key }) => (
                       <span
                         key={label || "expand"}
-                        className="text-xs font-medium text-muted-foreground uppercase tracking-wider"
+                        className="text-xs font-medium text-muted-foreground uppercase tracking-wider font-semibold "
                       >
                         {label && (
                           <button
