@@ -263,7 +263,7 @@ function ExecutionsPanel({
       <div className="px-5 py-4">
         {/* Header row */}
         <div className="flex items-center justify-between mb-4">
-          <h3 className="text-sm font-semibold text-foreground tracking-wide">
+          <h3 className="text-xs font-semibold text-foreground tracking-wide">
             Executions
           </h3>
           <div className="flex items-center gap-2">
