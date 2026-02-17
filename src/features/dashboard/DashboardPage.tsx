@@ -5,8 +5,6 @@ import {
   TrendingDown,
   Target,
   Flame,
-  ArrowUpRight,
-  ArrowDownRight,
 } from "lucide-react"
 import {
   LineChart,
@@ -21,6 +19,7 @@ import {
   Cell,
 } from "recharts"
 import { useChartColors } from "@/hooks/use-chart-colors"
+import { MetricCard } from "@/components/core/MetricCard"
 
 const periods = ["Today", "This Week", "This Month"] as const
 type Period = (typeof periods)[number]
@@ -55,62 +54,7 @@ const recentTrades = [
   { id: 5, asset: "AMZN", direction: "Short", pnl: -45.0, time: "3:10 PM", tags: ["Scalp"] },
 ]
 
-function MetricCard({
-  label,
-  value,
-  change,
-  changeLabel,
-  icon: Icon,
-  variant = "default",
-}: {
-  label: string
-  value: string
-  change?: string
-  changeLabel?: string
-  icon: typeof TrendingUp
-  variant?: "default" | "profit" | "loss"
-}) {
-  return (
-    <div className="flex flex-col gap-3 rounded-sm bg-card p-5 shadow-sm">
-      <div className="flex items-center justify-between">
-        <span className="text-[9px] tracking-wide font-medium text-muted-foreground uppercase tracking-wider">
-          {label}
-        </span>
-        <Icon className="h-4 w-4 text-muted-foreground" />
-      </div>
-      <div className="flex items-end justify-between">
-        <span
-          className={cn(
-            "text-3xl font-semibold font-mono tracking-tight",
-            variant === "profit" && "text-profit",
-            variant === "loss" && "text-loss",
-            variant === "default" && "text-foreground"
-          )}
-        >
-          {value}
-        </span>
-        {change && (
-          <span
-            className={cn(
-              "flex items-center gap-0.5 text-xs font-medium",
-              change.startsWith("+") ? "text-profit" : "text-loss"
-            )}
-          >
-            {change.startsWith("+") ? (
-              <ArrowUpRight className="h-3 w-3" />
-            ) : (
-              <ArrowDownRight className="h-3 w-3" />
-            )}
-            {change}
-            {changeLabel && (
-              <span className="ml-1 text-muted-foreground">{changeLabel}</span>
-            )}
-          </span>
-        )}
-      </div>
-    </div>
-  )
-}
+
 
 function CustomTooltip({ active, payload, label }: { active?: boolean; payload?: Array<{ value: number }>; label?: string }) {
   if (active && payload && payload.length) {
