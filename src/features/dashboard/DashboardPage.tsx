@@ -20,6 +20,7 @@ import {
 } from "recharts"
 import { useChartColors } from "@/hooks/use-chart-colors"
 import { MetricCard } from "@/components/core/MetricCard"
+import { Tooltip as ChartTooltip } from "@/components/core/Tooltip"
 
 const periods = ["Today", "This Week", "This Month"] as const
 type Period = (typeof periods)[number]
@@ -56,34 +57,6 @@ const recentTrades = [
 
 
 
-function CustomTooltip({ active, payload, label }: { active?: boolean; payload?: Array<{ value: number }>; label?: string }) {
-  if (active && payload && payload.length) {
-    return (
-      <div className="rounded-sm border border-border bg-popover px-3 py-2 text-xs shadow-lg">
-        <p className="text-muted-foreground">{label}</p>
-        <p className={cn("font-mono font-semibold", payload[0].value >= 0 ? "text-profit" : "text-loss")}>
-          {payload[0].value >= 0 ? "+" : ""}
-          ${payload[0].value.toLocaleString()}
-        </p>
-      </div>
-    )
-  }
-  return null
-}
-
-function EquityTooltip({ active, payload, label }: { active?: boolean; payload?: Array<{ value: number }>; label?: string }) {
-  if (active && payload && payload.length) {
-    return (
-      <div className="rounded-sm border border-border bg-popover px-3 py-2 text-xs shadow-lg">
-        <p className="text-muted-foreground">{label}</p>
-        <p className="font-mono font-semibold text-foreground">
-          ${payload[0].value.toLocaleString()}
-        </p>
-      </div>
-    )
-  }
-  return null
-}
 
 export function DashboardPage() {
   const [period, setPeriod] = useState<Period>("This Week")
@@ -177,7 +150,7 @@ export function DashboardPage() {
                   tickFormatter={(v) => `$${(v / 1000).toFixed(1)}k`}
                   domain={["dataMin - 200", "dataMax + 200"]}
                 />
-                <Tooltip content={<EquityTooltip />} />
+                <Tooltip content={<ChartTooltip variant="default" />} />
                 <Line
                   type="monotone"
                   dataKey="balance"
@@ -213,7 +186,7 @@ export function DashboardPage() {
                   tickLine={false}
                   tickFormatter={(v) => `$${v}`}
                 />
-                <Tooltip content={<CustomTooltip />} />
+                <Tooltip content={<ChartTooltip variant="pnl" />} />
                 <Bar dataKey="pnl" radius={[3, 3, 0, 0]}>
                   {dailyPnlData.map((entry, index) => (
                     <Cell
